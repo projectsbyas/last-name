@@ -18,7 +18,7 @@
   <div class="card">
     <h1>LAST NAME</h1>
     <p>If you want to get in contact, enter your email below.</p>
-    <form onsubmit="event.preventDefault(); alert('Thanks! We will reach out soon.');">
+    <form name="contact" method="POST" data-netlify="true">
       <input type="email" name="email" placeholder="you@example.com" required />
       <button type="submit">Notify me</button>
     </form>
