@@ -37,6 +37,20 @@
     font-size: clamp(40px, 8vw, 84px);
     line-height:1.05;
     letter-spacing:.18em; 
+    color: var(--text);
+    transition: color 5s ease;
+    animation: tintCycle 10s infinite;
+  }
+  @keyframes tintCycle {
+    0% {
+      color: #fff;
+    }
+    50% {
+      color: var(--accent);
+    }
+    100% {
+      color: #fff;
+    }
   }
   @media (max-width:480px){ 
     .card{ padding:40px 22px; } 
@@ -52,12 +66,57 @@
     border-radius:50%;
     color: var(--text);
     text-decoration:none;
-    transition: transform .2s ease;
+    border: 1px solid #fff;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
   .telegram:hover { 
     transform: translateY(-1px); 
+    box-shadow: 0 10px 30px rgba(191,163,111,.25);
+    border-color: var(--accent);
   }
   .telegram svg { width:28px; height:28px; display:block; }
+  /* --- Minimal white-line header animation --- */
+  .lines {
+    width: 100%;
+    max-width: 680px;
+    height: 90px;
+    margin: 0 auto 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .lines::before, .lines::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* fine vertical lines */
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(255,255,255,.18) 0 1px,
+      transparent 1px 28px
+    );
+    animation: driftX 18s linear infinite;
+    will-change: background-position;
+  }
+  .lines::after {
+    /* a second layer, offset and slower for depth */
+    opacity: .35;
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(255,255,255,.12) 0 1px,
+      transparent 1px 36px
+    );
+    animation-duration: 28s;
+    animation-direction: reverse;
+  }
+  @keyframes driftX {
+    0%   { background-position: 0 0; }
+    100% { background-position: 680px 0; }
+  }
+  /* soft reveal top/bottom so it melts into the black */
+  .lines {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 28%, #000 72%, transparent);
+            mask-image: linear-gradient(to bottom, transparent, #000 28%, #000 72%, transparent);
+  }
   </style>
 </head>
 <body>
@@ -68,6 +127,8 @@
         <path d="M9.07 13.88 8.8 17.72c.4 0 .57-.2.77-.42l1.83-1.97 3.98 2.7c.72.38 1.2.16 1.38-.63l2.57-11.6c.2-.92-.35-1.33-1.08-1.06L3.7 9.13c-.86.33-.85.82-.03 1.06l5.4 1.62 8.16-5.15c.42-.25.74-.12.4.16l-7.52 6.47z"/>
       </svg>
     </a>
+    <p style="color:#fff; font-size:14px; margin-top:24px;">Get in Contact</p>
+    <div class="lines" aria-hidden="true"></div>
   </main>
 </body>
 </html>
