@@ -40,6 +40,8 @@
     color: var(--text);
     transition: color 5s ease;
     animation: tintCycle 10s infinite;
+    word-break: break-word;
+    text-align: center;
   }
   @keyframes tintCycle {
     0% {
@@ -54,6 +56,10 @@
   }
   @media (max-width:480px){ 
     .card{ padding:40px 22px; } 
+    h1 {
+      display: block;
+      white-space: pre-line;
+    }
   }
 
   .telegram {
@@ -121,7 +127,7 @@
 </head>
 <body>
   <main class="card">
-    <h1>LAST NAME</h1>
+    <h1>LAST<br>NAME</h1>
     <a class="telegram" href="https://t.me/" target="_blank" rel="noopener" aria-label="Contact via Telegram">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" role="img">
         <path d="M9.07 13.88 8.8 17.72c.4 0 .57-.2.77-.42l1.83-1.97 3.98 2.7c.72.38 1.2.16 1.38-.63l2.57-11.6c.2-.92-.35-1.33-1.08-1.06L3.7 9.13c-.86.33-.85.82-.03 1.06l5.4 1.62 8.16-5.15c.42-.25.74-.12.4.16l-7.52 6.47z"/>
